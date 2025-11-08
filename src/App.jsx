@@ -6,8 +6,7 @@ import AlertMarker from "./components/AlertMarker";
 const MapView = () => {
   const [map, setMap] = useState(null);
   const [alertMarker, showMarker] = useState(false);
-  const [markerPos, setMarkerPos] = useState(false);
-  const [alertType, setAlertType] = useState(null);
+  const [markerPos, setMarkerPos] = useState(null);
 
   useEffect(() => {
     const m = L.map("map").setView([51.0447, -114.0719], 13);
@@ -29,12 +28,18 @@ const MapView = () => {
     };
   }, []);
 
+  const specifyAlert = (type) =>{  
+    showMarker(false);
+
+    // send to back
+    console.log(markerPos);
+    console.log(type);
+  }
+
   useEffect(() => {
     if (!map) return;
 
     const handleMapClick = (e) => {
-      const { lat, lng } = e.latlng;
-      
       setMarkerPos(e.latlng)
       showMarker(true)
     };
@@ -43,12 +48,12 @@ const MapView = () => {
     return () => {
       map.off("click", handleMapClick);
     };
-  }, [map, alertType]);
+  }, [map]);
 
   return (
     <div>
       <div id="map" style={{ height: "80vh", width: "100%" }}></div>
-      {alertMarker && map && <AlertMarker map={map} position={markerPos} onSelect={setAlertType} />}
+      {alertMarker && map && <AlertMarker map={map} position={markerPos} onSelect={specifyAlert} />}
     </div>
   );
 };
