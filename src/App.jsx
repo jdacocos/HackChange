@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import AlertButtons from "./components/AlertButtons";
+import AlertMarker from "./components/AlertMarker";
 
 const MapView = () => {
   const [map, setMap] = useState(null);
+  const [alertMarker, showMarker] = useState(false);
+  const [markerPos, setMarkerPos] = useState(false);
   const [alertType, setAlertType] = useState(null);
 
   useEffect(() => {
@@ -28,26 +30,13 @@ const MapView = () => {
   }, []);
 
   useEffect(() => {
-    if (!map || !alertType) return;
+    if (!map) return;
 
     const handleMapClick = (e) => {
       const { lat, lng } = e.latlng;
-      const message = `Confirm report for "${alertType}" at this location?`;
-
-      if (window.confirm(message)) {
-        L.marker([lat, lng])
-          .addTo(map)
-          .bindPopup(`🚨 ${alertType} reported here.`)
-          .openPopup();
-
-        // TODO: send data to backend
-        console.log("Report submitted:", { alertType, lat, lng });
-      } else {
-        console.log("Report cancelled");
-      }
-
-      setAlertType(null);
-      map.off("click", handleMapClick);
+      
+      setMarkerPos(e.latlng)
+      showMarker(true)
     };
 
     map.on("click", handleMapClick);
@@ -58,8 +47,8 @@ const MapView = () => {
 
   return (
     <div>
-      <AlertButtons onSelect={setAlertType} />
       <div id="map" style={{ height: "80vh", width: "100%" }}></div>
+      {alertMarker && map && <AlertMarker map={map} position={markerPos} onSelect={setAlertType} />}
     </div>
   );
 };
