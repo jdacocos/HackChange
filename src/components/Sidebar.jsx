@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Sidebar = ({ onNavigate }) => {
   const [activeItem, setActiveItem] = useState("Home");
   const [isOpen, setIsOpen] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const topMenuItems = [
     { name: "Home", icon: "🏠" },
@@ -11,8 +12,25 @@ const Sidebar = ({ onNavigate }) => {
     { name: "About Us", icon: "ℹ️" },
   ];
 
+  useEffect(() => {
+    // Check login state on page load
+    const saved = localStorage.getItem("isLoggedIn") === "true";
+    setLoggedIn(saved);
+  }, []);
+
   const handleClick = (itemName) => {
     setActiveItem(itemName);
+
+    // ✅ Handle sign out
+    if (itemName === "Sign out") {
+      localStorage.removeItem("isLoggedIn");
+      setLoggedIn(false);
+      setActiveItem("Home");
+      if (onNavigate) onNavigate("Home");
+      return;
+    }
+
+    // ✅ Handle normal navigation
     if (onNavigate) {
       onNavigate(itemName);
     }
@@ -58,11 +76,15 @@ const Sidebar = ({ onNavigate }) => {
 
         <div style={{ borderTop: "1px solid #374151" }}>
           <button
-            onClick={() => handleClick("Log in")}
+            onClick={() =>
+              handleClick(loggedIn ? "Sign out" : "Log in")
+            }
             className={`sidebar-item ${activeItem === "Log in" ? "active" : ""}`}
           >
             <span className="sidebar-icon">🔐</span>
-            <span className="sidebar-label">Log in</span>
+            <span className="sidebar-label">
+              {loggedIn ? "Sign out" : "Log in"}
+            </span>
           </button>
         </div>
 

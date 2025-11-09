@@ -20,10 +20,11 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Login:", { email: formData.email, password: formData.password });
-    // TODO: Implement login logic with Supabase
     alert("Login successful!");
+    localStorage.setItem("isLoggedIn", "true");
     navigate("/");
   };
+  
 
   const handleNavigation = (itemName) => {
     if (itemName === "Log in") {
