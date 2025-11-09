@@ -65,14 +65,17 @@ const Member = () => {
         status: "pending",
       };
 
-      const { error } = await supabase.from("member_credentials").upsert([payload], {
-        onConflict: "user_id",
-      });
+      const { error } = await supabase.from("member_credentials").insert(payload);
       if (error) throw error;
 
       setSuccessMessage(
         "Credentials submitted! An admin will review your application and notify you once approved."
       );
+
+      // Navigate to map page after 2 seconds
+      setTimeout(() => {
+        navigate("/map");
+      }, 2000);
     } catch (err) {
       console.error("Member credential submission failed", err);
       setErrorMessage(err.message || "Unable to submit credentials. Please try again.");
