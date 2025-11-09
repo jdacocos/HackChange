@@ -1,0 +1,149 @@
+.aboutus-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #F7E89C 0%, #FDF8E1 100%);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 4rem;
+}
+
+.aboutus-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  max-width: 1400px;
+  width: 100%;
+  background: white;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.aboutus-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.aboutus-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  border-bottom: 4px solid #F7E89C;
+  padding-bottom: 1rem;
+}
+
+.aboutus-section h2 {
+  font-size: 1.75rem;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.aboutus-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.features-list li {
+  font-size: 1.1rem;
+  padding: 0.75rem 0;
+  color: #1f2937;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.features-list li:last-child {
+  border-bottom: none;
+}
+
+.aboutus-team {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: sticky;
+  top: 2rem;
+}
+
+.team-placeholder {
+  background: linear-gradient(135deg, #F7E89C 0%, #FDF8E1 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-image-placeholder {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.team-icon {
+  font-size: 5rem;
+  opacity: 0.6;
+}
+
+.team-image-placeholder h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin: 0;
+}
+
+.team-image-placeholder p {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .aboutus-content {
+    grid-template-columns: 1fr;
+  }
+
+  .aboutus-team {
+    position: static;
+  }
+
+  .team-placeholder {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutus-container {
+    padding: 1rem;
+  }
+
+  .aboutus-content {
+    padding: 2rem;
+  }
+
+  .aboutus-title {
+    font-size: 2rem;
+  }
+
+  .aboutus-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .aboutus-section p,
+  .features-list li {
+    font-size: 1rem;
+  }
+}

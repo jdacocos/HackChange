@@ -1,10 +1,15 @@
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import AlertMarker from "./components/AlertMarker";
 import Sidebar from "./components/Sidebar";
+import Login from "./pages/Login";
+import Registration from "./pages/Registration";
+import AboutUs from "./pages/AboutUs";
 
 const MapView = () => {
+  const navigate = useNavigate();
   const [map, setMap] = useState(null);
   const [alertMarker, showMarker] = useState(false);
   const [markerPos, setMarkerPos] = useState(null);
@@ -60,10 +65,22 @@ const MapView = () => {
     };
   }, [map]);
 
+  const handleNavigation = (itemName) => {
+    if (itemName === "Log in") {
+      navigate("/login");
+    } else if (itemName === "Member") {
+      navigate("/register");
+    } else if (itemName === "Home") {
+      navigate("/about");
+    } else if (itemName === "Map") {
+      navigate("/");
+    }
+  };
+
   return (
     <div>
       {/* Sidebar + Alert system */}
-      <Sidebar />
+      <Sidebar onNavigate={handleNavigation} />
       <AlertMarker onSelect={specifyAlert} show={alertMarker} />
 
       {/* Map container */}
@@ -82,4 +99,17 @@ const MapView = () => {
   );
 };
 
-export default MapView;
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MapView />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Registration />} />
+        <Route path="/about" element={<AboutUs />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
