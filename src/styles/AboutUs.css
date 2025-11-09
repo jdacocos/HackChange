@@ -1,6 +1,6 @@
 .aboutus-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #F7E89C 0%, #FDF8E1 100%);
+  background-color: #111827;
   padding: 2rem;
   display: flex;
   justify-content: center;
@@ -14,10 +14,11 @@
   gap: 3rem;
   max-width: 1400px;
   width: 100%;
-  background: white;
+  background: linear-gradient(to right, #ffffff, #60a5fa);
   padding: 3rem;
   border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.1);
+  border: 1px solid #e5e7eb;
 }
 
 .aboutus-text {
@@ -28,16 +29,19 @@
 
 .aboutus-title {
   font-size: 2.5rem;
-  font-weight: bold;
-  color: #1f2937;
-  margin-bottom: 1rem;
-  border-bottom: 4px solid #F7E89C;
-  padding-bottom: 1rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to right, #ffffff, #60a5fa);
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 25px rgba(17, 24, 39, 0.08);
 }
 
 .aboutus-section h2 {
   font-size: 1.75rem;
-  color: #1f2937;
+  color: #111827;
   margin-bottom: 1rem;
   font-weight: 600;
 }
@@ -45,7 +49,7 @@
 .aboutus-section p {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #4b5563;
+  color: #111827;
   margin-bottom: 1rem;
 }
 
@@ -58,8 +62,8 @@
 .features-list li {
   font-size: 1.1rem;
   padding: 0.75rem 0;
-  color: #1f2937;
-  border-bottom: 1px solid #f3f4f6;
+  color: #111827;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .features-list li:last-child {
@@ -75,7 +79,8 @@
 }
 
 .team-placeholder {
-  background: linear-gradient(135deg, #F7E89C 0%, #FDF8E1 100%);
+  background: #f9fafb;
+  border: 2px solid #e5e7eb;
   border-radius: 12px;
   padding: 2rem;
   min-height: 400px;
@@ -99,14 +104,14 @@
 
 .team-image-placeholder h3 {
   font-size: 2rem;
-  font-weight: bold;
-  color: #1f2937;
+  font-weight: 600;
+  color: #111827;
   margin: 0;
 }
 
 .team-image-placeholder p {
   font-size: 1.1rem;
-  color: #6b7280;
+  color: #4b5563;
   margin: 0;
 }
 

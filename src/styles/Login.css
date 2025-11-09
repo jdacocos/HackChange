@@ -3,15 +3,15 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #F7E89C 0%, #FDF8E1 100%);
+  background-color: #111827;
   padding: 2rem;
 }
 
 .login-card {
-  background: white;
+  background: #1f2937;
   padding: 3rem;
   border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 450px;
 }
@@ -20,13 +20,13 @@
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
-  color: #1f2937;
+  color: white;
   margin-bottom: 0.5rem;
 }
 
 .login-subtitle {
   text-align: center;
-  color: #6b7280;
+  color: #d1d5db;
   font-size: 1rem;
   margin-bottom: 2rem;
 }
@@ -45,23 +45,25 @@
 
 .form-group label {
   font-weight: 500;
-  color: #374151;
+  color: white;
   font-size: 0.95rem;
 }
 
 .form-group input {
   padding: 0.875rem 1rem;
-  border: 2px solid #e5e7eb;
+  border: 2px solid #374151;
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.2s ease;
   font-family: 'Federo', sans-serif;
+  background-color: #111827;
+  color: white;
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #F7E89C;
-  box-shadow: 0 0 0 3px rgba(247, 232, 156, 0.2);
+  border-color: #5688F5;
+  box-shadow: 0 0 0 3px rgba(86, 136, 245, 0.2);
 }
 
 .form-group input::placeholder {
@@ -69,8 +71,8 @@
 }
 
 .login-button {
-  background-color: #F7E89C;
-  color: #1f2937;
+  background-color: #5688F5;
+  color: white;
   padding: 1rem;
   border: none;
   border-radius: 8px;
@@ -83,7 +85,7 @@
 }
 
 .login-button:hover {
-  background-color: #e0d090;
+  background-color: #87B7D5;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -96,18 +98,18 @@
   text-align: center;
   margin-top: 1.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid #374151;
 }
 
 .login-toggle p {
-  color: #6b7280;
+  color: #d1d5db;
   font-size: 0.95rem;
 }
 
 .toggle-button {
   background: none;
   border: none;
-  color: #1f2937;
+  color: #5688F5;
   font-weight: 600;
   cursor: pointer;
   text-decoration: underline;
@@ -117,5 +119,5 @@
 }
 
 .toggle-button:hover {
-  color: #F7E89C;
+  color: #87B7D5;
 }

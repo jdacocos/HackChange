@@ -54,11 +54,13 @@ const Registration = () => {
     if (itemName === "Log in") {
       navigate("/login");
     } else if (itemName === "Member") {
-      navigate("/register");
+      navigate("/member");
     } else if (itemName === "Home") {
       navigate("/");
     } else if (itemName === "Map") {
       navigate("/");
+    } else if (itemName === "About Us") {
+      navigate("/about");
     }
   };
 

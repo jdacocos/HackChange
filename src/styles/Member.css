@@ -1,4 +1,4 @@
-.registration-container {
+.member-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,7 +7,7 @@
   padding: 2rem;
 }
 
-.registration-card {
+.member-card {
   background: #1f2937;
   padding: 3rem;
   border-radius: 16px;
@@ -18,7 +18,7 @@
   overflow-y: auto;
 }
 
-.registration-title {
+.member-title {
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
@@ -26,11 +26,20 @@
   margin-bottom: 0.5rem;
 }
 
-.registration-subtitle {
+.member-subtitle {
   text-align: center;
   color: #d1d5db;
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.member-description {
+  text-align: center;
+  color: #d1d5db;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
 }
 
 .account-type-selector {
@@ -68,7 +77,7 @@
   box-shadow: 0 4px 12px rgba(86, 136, 245, 0.3);
 }
 
-.registration-form {
+.member-form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -139,12 +148,11 @@
   box-shadow: 0 0 0 3px rgba(86, 136, 245, 0.2);
 }
 
-.form-group input::placeholder,
-.form-group textarea::placeholder {
+.form-group input::placeholder {
   color: #9ca3af;
 }
 
-.registration-button {
+.member-button {
   background-color: #5688F5;
   color: white;
   padding: 1rem;
@@ -158,42 +166,14 @@
   font-family: 'Federo', sans-serif;
 }
 
-.registration-button:hover {
+.member-button:hover {
   background-color: #87B7D5;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.registration-button:active {
+.member-button:active {
   transform: translateY(0);
-}
-
-.registration-footer {
-  text-align: center;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #374151;
-}
-
-.registration-footer p {
-  color: #d1d5db;
-  font-size: 0.95rem;
-}
-
-.footer-link {
-  background: none;
-  border: none;
-  color: #5688F5;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: underline;
-  font-size: 0.95rem;
-  font-family: 'Federo', sans-serif;
-  transition: color 0.2s ease;
-}
-
-.footer-link:hover {
-  color: #87B7D5;
 }
 
 /* Responsive design */
@@ -202,11 +182,11 @@
     grid-template-columns: 1fr;
   }
 
-  .registration-card {
+  .member-card {
     padding: 2rem;
   }
 
-  .registration-title {
+  .member-title {
     font-size: 1.75rem;
   }
 }
