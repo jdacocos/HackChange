@@ -9,11 +9,13 @@ const AboutUs = () => {
     if (itemName === "Log in") {
       navigate("/login");
     } else if (itemName === "Member") {
-      navigate("/register");
+      navigate("/member");
     } else if (itemName === "Home") {
       navigate("/");
     } else if (itemName === "Map") {
       navigate("/");
+    } else if (itemName === "About Us") {
+      navigate("/about");
     }
   };
 
@@ -23,7 +25,7 @@ const AboutUs = () => {
       <div className="aboutus-container">
         <div className="aboutus-content">
           <div className="aboutus-text">
-            <h1 className="aboutus-title">About STREET AID</h1>
+            <h1 className="aboutus-title">ABOUT STREET AID</h1>
 
             <section className="aboutus-section">
               <h2>Our Mission</h2>

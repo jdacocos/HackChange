@@ -29,11 +29,13 @@ const Login = () => {
     if (itemName === "Log in") {
       navigate("/login");
     } else if (itemName === "Member") {
-      navigate("/register");
+      navigate("/member");
     } else if (itemName === "Home") {
       navigate("/");
     } else if (itemName === "Map") {
       navigate("/");
+    } else if (itemName === "About Us") {
+      navigate("/about");
     }
   };
 
@@ -85,7 +87,7 @@ const Login = () => {
                 onClick={() => navigate("/register")}
                 className="toggle-button"
               >
-                Register as Member
+                Register Now
               </button>
             </p>
           </div>
