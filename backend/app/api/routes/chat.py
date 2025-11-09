@@ -1,5 +1,7 @@
 from typing import List, Literal, Optional
 
+import logging
+
 from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel, Field
 from openai import AsyncOpenAI
@@ -26,6 +28,13 @@ class ChatResponse(BaseModel):
 
 _async_client: Optional[AsyncOpenAI] = None
 
+_FALLBACK_REPLY = (
+    "I'm sorry, but I can't reach the safety assistant right now. "
+    "If you need immediate assistance, please call 911. You can also reach the 988 Suicide & "
+    "Crisis Lifeline at 988 or visit 988lifeline.org, and find local shelters via www.hud.gov/findshelters."
+)
+
+logger = logging.getLogger(__name__)
 
 def _get_async_client() -> AsyncOpenAI:
     global _async_client
@@ -42,7 +51,16 @@ def _get_async_client() -> AsyncOpenAI:
 
 @router.post("/completions", response_model=ChatResponse)
 async def create_completion(request: ChatRequest) -> ChatResponse:
-    client = _get_async_client()
+    try:
+        client = _get_async_client()
+    except HTTPException as exc:
+        if (
+            exc.status_code == status.HTTP_500_INTERNAL_SERVER_ERROR
+            and exc.detail == "OpenAI API key is not configured."
+        ):
+            logger.warning("OpenAI API key is missing; returning fallback reply.")
+            return ChatResponse(reply=_FALLBACK_REPLY)
+        raise
 
     try:
         response = await client.chat.completions.create(
@@ -52,10 +70,8 @@ async def create_completion(request: ChatRequest) -> ChatResponse:
             temperature=request.temperature or settings.OPENAI_TEMPERATURE,
         )
     except Exception as exc:  # noqa: BLE001
-        raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY,
-            detail="The AI assistant is currently unavailable.",
-        ) from exc
+        logger.exception("Chat completion request failed: %s", exc)
+        return ChatResponse(reply=_FALLBACK_REPLY)
 
     choice = response.choices[0]
     message_content = (choice.message.content or "").strip()

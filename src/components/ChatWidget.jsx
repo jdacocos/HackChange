@@ -21,14 +21,23 @@ Suicide & Crisis Lifeline. Encourage seeking professional help and provide pract
 If the user requests resources, recommend trusted U.S. organizations and government services.`;
 
 const buildBackendUrl = () => {
-  const fallback = "http://localhost:8000";
-  const raw = import.meta.env.VITE_BACKEND_URL ?? fallback;
-  return raw.replace(/\/$/, "");
+  const raw = import.meta.env.VITE_BACKEND_URL;
+
+  if (typeof raw === "string" && raw.trim().length > 0) {
+    return raw.trim().replace(/\/$/, "");
+  }
+
+  if (typeof window !== "undefined" && window.location?.origin) {
+    return window.location.origin.replace(/\/$/, "");
+  }
+
+  return "";
 };
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [isSending, setIsSending] = useState(false);
   const [messages, setMessages] = useState([
     {
       id: "welcome",
@@ -42,7 +51,7 @@ const ChatWidget = () => {
 
   const appendBotFallback = (errorMessage) => {
     const fallbackText =
-      `${errorMessage} In the meantime, you can reach out to these resources: ` +
+      `${errorMessage} Hello! you can reach out to these resources: ` +
       resourceLinks
         .map((resource) => `${resource.label}: ${resource.description}`)
         .join(" ");
@@ -66,6 +75,7 @@ const ChatWidget = () => {
     const userMessage = {
       id: `user-${Date.now()}`,
       sender: "user",
+      role: "user",
       text: trimmed,
     };
 
@@ -94,7 +104,7 @@ const ChatWidget = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Unable to reach the safety assistant right now.");
+        throw new Error("");
       }
 
       const data = await response.json();
@@ -114,11 +124,18 @@ const ChatWidget = () => {
       ]);
     } catch (error) {
       console.error("Chat assistant error", error);
-      appendBotFallback(
-        error instanceof Error
-          ? error.message
-          : "Something went wrong while contacting the safety assistant."
-      );
+
+      const normalizedMessage = (() => {
+        if (error instanceof Error) {
+          if (error.message === "Failed to fetch") {
+            return "We couldn't connect to the safety assistant just now.";
+          }
+          return error.message;
+        }
+        return "Something went wrong while contacting the safety assistant.";
+      })();
+
+      appendBotFallback(normalizedMessage);
     } finally {
       setIsSending(false);
     }
