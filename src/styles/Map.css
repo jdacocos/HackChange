@@ -1,0 +1,226 @@
+.resource-popup__container .leaflet-popup-content {
+  margin: 0;
+  padding: 0;
+}
+
+.resource-popup {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1f2933;
+  font-size: 0.85rem;
+  max-width: 280px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.resource-popup__top {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.resource-popup__media {
+  flex: 0 0 72px;
+  height: 72px;
+  background: linear-gradient(135deg, #d9e2ec, #bcccdc);
+  border-radius: 6px;
+}
+
+.resource-popup__overview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.resource-popup__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #102a43;
+  margin: 0;
+}
+
+.resource-popup__address,
+.resource-popup__distance {
+  margin: 0;
+  color: #486581;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.resource-popup__distance {
+  font-weight: 500;
+}
+
+.resource-popup__body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.resource-popup__facts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.resource-popup__label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #829ab1;
+}
+
+.resource-popup__value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #243b53;
+}
+
+.resource-popup__description {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: #334e68;
+  max-height: 90px;
+  overflow: auto;
+}
+
+@media (max-width: 360px) {
+  .resource-popup__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Alert Popup Styles */
+.alert-popup {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1f2933;
+  font-size: 0.9rem;
+  max-width: 280px;
+  padding: 0.75rem;
+}
+
+.alert-popup.resolved {
+  opacity: 0.7;
+  background: #f0f4f8;
+}
+
+.alert-popup-header {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e4e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.alert-popup-status-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.alert-popup-status-badge.active {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.alert-popup-status-badge.resolved {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.alert-popup-shelter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.5rem;
+  background: #f0f4f8;
+  border-radius: 6px;
+  border-left: 3px solid #3b82f6;
+}
+
+.alert-popup-shelter-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #486581;
+  margin-bottom: 0.25rem;
+}
+
+.alert-popup-shelter-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #102a43;
+}
+
+.alert-popup-shelter-address {
+  font-size: 0.8rem;
+  color: #486581;
+  line-height: 1.3;
+}
+
+.alert-popup-shelter-distance {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #3b82f6;
+  margin-top: 0.25rem;
+}
+
+.alert-popup-no-shelter {
+  font-size: 0.85rem;
+  color: #829ab1;
+  font-style: italic;
+  padding: 0.5rem;
+}
+
+.alert-popup-resolve-btn {
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.alert-popup-resolve-btn.resolve {
+  background: #10b981;
+  color: white;
+}
+
+.alert-popup-resolve-btn.resolve:hover {
+  background: #059669;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+}
+
+.alert-popup-resolve-btn.reopen {
+  background: #f59e0b;
+  color: white;
+}
+
+.alert-popup-resolve-btn.reopen:hover {
+  background: #d97706;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(245, 158, 11, 0.2);
+}
+
+.alert-popup-resolve-btn:active {
+  transform: translateY(0);
+}

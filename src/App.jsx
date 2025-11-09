@@ -1,67 +1,82 @@
-import { useEffect, useState } from "react";
-import L from "leaflet";
+import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import "leaflet/dist/leaflet.css";
-import AlertButtons from "./components/AlertButtons";
+import Sidebar from "./components/Sidebar";
+import Login from "./pages/Login";
+import Registration from "./pages/Registration";
+import Member from "./pages/Member";
+import AboutUs from "./pages/AboutUs";
+import MapView from "./pages/Map";
+import ChatWidget from "./components/ChatWidget";
+import ForgotPassword from "./pages/ForgotPassword";
+import Home from "./pages/Home";
+import Shelter from "./pages/Shelter";
 
-const MapView = () => {
-  const [map, setMap] = useState(null);
-  const [alertType, setAlertType] = useState(null);
-
-  useEffect(() => {
-    const m = L.map("map").setView([51.0447, -114.0719], 13);
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: "&copy; OpenStreetMap contributors",
-    }).addTo(m);
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        const { latitude, longitude } = pos.coords;
-        m.setView([latitude, longitude], 14);
-        L.marker([latitude, longitude]).addTo(m).bindPopup("📍 You are here");
-      });
+const AppContent = () => {
+  const navigate = useNavigate();
+  const RequireAuth = ({ children }) => {
+    const isLoggedIn =
+      typeof window !== "undefined" && localStorage.getItem("isLoggedIn") === "true";
+    if (!isLoggedIn) {
+      return <Navigate to="/login" replace />;
     }
+    return children;
+  };
 
-    setMap(m);
-    return () => {
-      m.remove();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!map || !alertType) return;
-
-    const handleMapClick = (e) => {
-      const { lat, lng } = e.latlng;
-      const message = `Confirm report for "${alertType}" at this location?`;
-
-      if (window.confirm(message)) {
-        L.marker([lat, lng])
-          .addTo(map)
-          .bindPopup(`🚨 ${alertType} reported here.`)
-          .openPopup();
-
-        // TODO: send data to backend
-        console.log("Report submitted:", { alertType, lat, lng });
-      } else {
-        console.log("Report cancelled");
-      }
-
-      setAlertType(null);
-      map.off("click", handleMapClick);
-    };
-
-    map.on("click", handleMapClick);
-    return () => {
-      map.off("click", handleMapClick);
-    };
-  }, [map, alertType]);
+  const handleNavigation = (itemName) => {
+    if (itemName === "Log in") {
+      navigate("/login");
+    } else if (itemName === "Member") {
+      navigate("/member");
+    } else if (itemName === "Shelter") {
+      navigate("/shelter");
+    } else if (itemName === "Home") {
+      navigate("/");
+    } else if (itemName === "Map") {
+      navigate("/map");
+    } else if (itemName === "About Us") {
+      navigate("/about");
+    }
+  };
 
   return (
     <div>
-      <AlertButtons onSelect={setAlertType} />
-      <div id="map" style={{ height: "80vh", width: "100%" }}></div>
+      {/* Sidebar + Alert system */}
+      <Sidebar onNavigate={handleNavigation} />
+      <ChatWidget />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/map" element={<MapView />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Registration />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route
+          path="/member"
+          element={
+            <RequireAuth>
+              <Member />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/shelter"
+          element={
+            <RequireAuth>
+              <Shelter />
+            </RequireAuth>
+          }
+        />
+      </Routes>
     </div>
   );
 };
 
-export default MapView;
+const App = () => {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
+};
+
+export default App;

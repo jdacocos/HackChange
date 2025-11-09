@@ -1,0 +1,251 @@
+.registration-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to right, #588cde, #8396ac);
+  padding: 2rem;
+}
+
+.registration-card {
+  background: #1f2937;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 800px;
+  max-height: none;
+}
+
+.registration-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.registration-subtitle {
+  text-align: center;
+  color: #d1d5db;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.account-type-selector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.type-button {
+  flex: 1;
+  max-width: 250px;
+  padding: 1rem 1.5rem;
+  background: #111827;
+  border: 2px solid #374151;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Federo', sans-serif;
+  color: white;
+}
+
+.type-button:hover {
+  border-color: #87B7D5;
+  background-color: #1f2937;
+}
+
+.type-button.active {
+  background-color: #5688F5;
+  border-color: #5688F5;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(86, 136, 245, 0.3);
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #374151;
+}
+
+.section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.section-description {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 0.95rem;
+}
+
+.form-section:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-row.single {
+  grid-template-columns: 1fr;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.875rem 1rem;
+  border: 2px solid #374151;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  font-family: 'Federo', sans-serif;
+  width: 100%;
+  background-color: #111827;
+  color: white;
+}
+
+.field-helper {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin: 0.35rem 0 0;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #5688F5;
+  box-shadow: 0 0 0 3px rgba(86, 136, 245, 0.2);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #9ca3af;
+}
+
+.registration-button {
+  background-color: #5688F5;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+  font-family: 'Federo', sans-serif;
+}
+
+.registration-button:hover {
+  background-color: #87B7D5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.registration-button:active {
+  transform: translateY(0);
+}
+
+.registration-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #374151;
+}
+
+.registration-footer p {
+  color: #d1d5db;
+  font-size: 0.95rem;
+}
+
+.footer-link {
+  background: none;
+  border: none;
+  color: #5688F5;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.95rem;
+  font-family: 'Federo', sans-serif;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #87B7D5;
+}
+
+.form-errors {
+  background-color: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(248, 113, 113, 0.6);
+  color: #fecaca;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.form-errors ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.form-errors li {
+  line-height: 1.4;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .registration-card {
+    padding: 2rem;
+  }
+
+  .registration-title {
+    font-size: 1.75rem;
+  }
+}

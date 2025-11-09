@@ -1,0 +1,147 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to right, #588cde, #8396ac);
+  padding: 2rem;
+}
+
+.login-card {
+  background: #1f2937;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 450px;
+}
+
+.login-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+  text-align: center;
+  color: #d1d5db;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.form-group input {
+  padding: 0.875rem 1rem;
+  border: 2px solid #374151;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  font-family: 'Federo', sans-serif;
+  background-color: #111827;
+  color: white;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #5688F5;
+  box-shadow: 0 0 0 3px rgba(86, 136, 245, 0.2);
+}
+
+.form-group input::placeholder {
+  color: #9ca3af;
+}
+
+.login-button {
+  background-color: #5688F5;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+  font-family: 'Federo', sans-serif;
+}
+
+.login-button:hover {
+  background-color: #87B7D5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.login-button:active {
+  transform: translateY(0);
+}
+
+.login-button.secondary {
+  margin-top: 0.75rem;
+  background-color: transparent;
+  border: 2px solid #5688F5;
+  color: #5688F5;
+}
+
+.login-button.secondary:hover {
+  background-color: rgba(86, 136, 245, 0.1);
+  color: white;
+}
+
+.form-error {
+  color: #fca5a5;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.form-success {
+  color: #6ee7b7;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.login-toggle {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #374151;
+}
+
+.login-toggle p {
+  color: #d1d5db;
+  font-size: 0.95rem;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: #5688F5;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.95rem;
+  font-family: 'Federo', sans-serif;
+  transition: color 0.2s ease;
+}
+
+.toggle-button:hover {
+  color: #87B7D5;
+}

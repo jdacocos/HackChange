@@ -1,0 +1,308 @@
+.member-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  flex: 1;
+  background: linear-gradient(to right, #588cde, #8396ac);
+  padding: 2rem;
+}
+
+.member-card {
+  background: #1f2937;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+}
+
+.member-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.member-subtitle {
+  text-align: center;
+  color: #d1d5db;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.member-description {
+  text-align: center;
+  color: #d1d5db;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.account-type-selector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.type-button {
+  flex: 1;
+  max-width: 250px;
+  padding: 1rem 1.5rem;
+  background: #111827;
+  border: 2px solid #374151;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Federo', sans-serif;
+  color: white;
+}
+
+.type-button:hover {
+  border-color: #87B7D5;
+  background-color: #1f2937;
+}
+
+.type-button.active {
+  background-color: #5688F5;
+  border-color: #5688F5;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(86, 136, 245, 0.3);
+}
+
+.member-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #374151;
+}
+
+.form-section:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 1rem 0.2rem;
+  border: 2px solid #374151;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  font-family: 'Federo', sans-serif;
+  width: 100%;
+  background-color: #111827;
+  color: white;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #5688F5;
+  box-shadow: 0 0 0 3px rgba(86, 136, 245, 0.2);
+}
+
+.form-group input::placeholder {
+  color: #9ca3af;
+}
+
+.member-button {
+  background-color: #5688F5;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+  font-family: 'Federo', sans-serif;
+}
+
+.member-button:hover {
+  background-color: #87B7D5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.member-button:active {
+  transform: translateY(0);
+}
+
+.form-error {
+  color: #fca5a5;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.form-success {
+  color: #6ee7b7;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Membership Status Styles */
+.membership-status {
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.membership-status h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
+}
+
+.membership-status p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.status-pending {
+  background: #fef3c7;
+  color: #92400e;
+  border: 2px solid #f59e0b;
+}
+
+.status-approved {
+  background: #d1fae5;
+  color: #065f46;
+  border: 2px solid #10b981;
+}
+
+.status-rejected {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 2px solid #ef4444;
+}
+
+/* Membership Details Styles */
+.membership-details {
+  margin-bottom: 2rem;
+}
+
+.membership-details h3 {
+  color: white;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #374151;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detail-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.detail-item label {
+  font-weight: 600;
+  color: #9ca3af;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detail-item p {
+  color: white;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0.75rem;
+  background: #111827;
+  border-radius: 6px;
+  border: 1px solid #374151;
+}
+
+.detail-item a {
+  color: #5688F5;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.75rem;
+  background: #111827;
+  border-radius: 6px;
+  border: 1px solid #374151;
+  transition: all 0.2s ease;
+}
+
+.detail-item a:hover {
+  background: #1f2937;
+  border-color: #5688F5;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .member-card {
+    padding: 2rem;
+  }
+
+  .member-title {
+    font-size: 1.75rem;
+  }
+}

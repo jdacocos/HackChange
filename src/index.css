@@ -2,6 +2,113 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: 'Federo', sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #111827;
+}
+
+.shelter-popup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 280px;
+  color: #111827;
+}
+
+.shelter-popup__header {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.shelter-popup__thumbnail {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #d1d5db, #e5e7eb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #4b5563;
+  font-weight: 600;
+}
+
+.shelter-popup__headline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.shelter-popup__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.shelter-popup__address,
+.shelter-popup__distance {
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+.shelter-popup__body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.shelter-popup__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: #1f2937;
+}
+
+.shelter-popup__label {
+  font-weight: 600;
+}
+
+.shelter-popup__status {
+  font-weight: 400;
+  color: #4b5563;
+}
+
+.shelter-popup__description {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #4b5563;
+}
+
+.shelter-popup__container .leaflet-popup-content-wrapper {
+  padding: 0;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.15);
+  border: none;
+  background: #ffffff;
+}
+
+.shelter-popup__container .leaflet-popup-content {
+  margin: 0;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.shelter-popup__container .leaflet-popup-tip {
+  background: #ffffff;
+}
+
 .btn {
     background-color: #3b82f6;
     color: white;
@@ -12,8 +119,337 @@
     font-weight: 500;
     transition: background 0.2s ease;
   }
-  
+
   .btn:hover {
     background-color: #2563eb;
   }
-  
+
+/* Hamburger Menu Button */
+.hamburger-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1100;
+  background-color: #111827;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.hamburger-menu:hover {
+  background-color: #1f2937;
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 24px;
+}
+
+.hamburger-icon span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 16rem;
+  height: calc(100vh - 40px);
+  background-color: #111827;
+  color: white;
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  transform-origin: top left;
+}
+
+.sidebar.open {
+  transform: scale(1) translateX(0);
+  opacity: 1;
+}
+
+.sidebar.closed {
+  transform: scale(0.1) translateX(-200px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #374151;
+  text-align: center;
+  background-color: #111827;
+  border-radius: 12px 12px 0 0;
+}
+
+.sidebar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-item {
+  width: calc(100% - 2rem);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #5688F5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.sidebar-item:hover {
+  background-color: #87B7D5;
+}
+
+.sidebar-item.active {
+  background-color: #87B7D5;
+}
+
+.sidebar-icon {
+  font-size: 1.5rem;
+}
+
+.sidebar-label {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid #374151;
+  font-size: 0.875rem;
+  color: white;
+  text-align: center;
+  border-radius: 0 0 12px 12px;
+}
+
+.main-content {
+  margin-left: 0;
+  flex: 1;
+}
+
+.chat-widget-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.alert-status {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background-color: #111827;
+  color: #f9fafb;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  z-index: 1400;
+  border-left: 4px solid #34d399;
+  font-weight: 600;
+}
+
+.alert-status.error {
+  border-left-color: #f87171;
+  color: #fee2e2;
+}
+
+/* Chat toggle button (already fits the theme) */
+.chat-widget-toggle {
+  background-color: #0f172a;
+  color: #f9fafb;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.4);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.chat-widget-toggle:hover {
+  transform: translateY(-2px);
+  background-color: #1e293b;
+}
+
+/* Chat panel */
+.chat-widget-panel {
+  width: min(320px, calc(100vw - 48px));
+  background: #0f172a;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px -12px rgba(15, 23, 42, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(96, 165, 250, 0.3);
+}
+
+/* Header */
+.chat-widget-header {
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-align: center;
+}
+
+/* Messages area */
+.chat-widget-messages {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 260px;
+  overflow-y: auto;
+  background: #1e293b; /* dark navy background */
+}
+
+/* Message base */
+.chat-widget-message {
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  max-width: 85%;
+}
+
+/* User bubble */
+.chat-widget-message-user {
+  align-self: flex-end;
+  background: linear-gradient(to right, #3b82f6, #60a5fa);
+  color: #ffffff;
+}
+
+/* Bot bubble */
+.chat-widget-message-bot {
+  align-self: flex-start;
+  background: #e0f2fe;
+  color: #0f172a;
+}
+
+/* Input bar */
+.chat-widget-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #0f172a;
+  border-top: 1px solid rgba(96, 165, 250, 0.3);
+}
+
+.chat-widget-input input {
+  flex: 1;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  border-radius: 9999px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.95rem;
+  background: #1e293b;
+  color: #f9fafb;
+  outline: none;
+}
+
+.chat-widget-input input:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Send button */
+.chat-widget-input button {
+  background: linear-gradient(to right, #3b82f6, #60a5fa);
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.5rem 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.chat-widget-input button:hover {
+  transform: translateY(-2px);
+}
+
+/* animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.chat-widget-panel {
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+.chat-widget-panel.closing {
+  animation: fadeOutDown 0.3s ease forwards;
+}
