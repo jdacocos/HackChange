@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { personIcon, alertIcon } from "../components/CustomIcon";
+import { personIcon, alertIcon, houseIcon } from "../components/CustomIcon";
 import AlertMarker from "../components/AlertMarker";
 import { createAlert, fetchAlerts } from "../lib/alerts";
+import { fetchShelters } from "../lib/overpass";
 
 const MapView = () => {
   const [map, setMap] = useState(null);
@@ -11,10 +12,13 @@ const MapView = () => {
   const [markerPos, setMarkerPos] = useState(null);
   const [alerts, setAlerts] = useState([]);
   const [isSaving, setIsSaving] = useState(false);
+  const [shelters, setShelters] = useState([]);
   const [statusMessage, setStatusMessage] = useState("");
   const [statusType, setStatusType] = useState(null);
   const alertLayerRef = useRef(null);
+  const shelterLayerRef = useRef(null);
   const messageTimeoutRef = useRef(null);
+  const shelterAbortRef = useRef(null);
 
   useEffect(() => {
     const m = L.map("map").setView([51.0447, -114.0719], 13);
@@ -37,10 +41,14 @@ const MapView = () => {
     }
 
     alertLayerRef.current = L.layerGroup().addTo(m);
+    shelterLayerRef.current = L.layerGroup().addTo(m);
     setMap(m);
     return () => {
       if (messageTimeoutRef.current) {
         clearTimeout(messageTimeoutRef.current);
+      }
+      if (shelterAbortRef.current) {
+        shelterAbortRef.current.abort();
       }
       m.remove();
     };
@@ -114,6 +122,55 @@ const MapView = () => {
   }, [map]);
 
   useEffect(() => {
+    if (!map) return;
+
+    let isMounted = true;
+
+    const loadShelters = async () => {
+      if (!map) return;
+
+      if (shelterAbortRef.current) {
+        shelterAbortRef.current.abort();
+      }
+
+      const controller = new AbortController();
+      shelterAbortRef.current = controller;
+
+      try {
+        const results = await fetchShelters(map.getBounds(), {
+          signal: controller.signal,
+        });
+
+        if (isMounted) {
+          setShelters(results);
+        }
+      } catch (error) {
+        if (error.name === "AbortError") {
+          return;
+        }
+        console.error("Failed to load nearby shelters", error);
+        showStatus("Unable to load nearby shelters.", "error");
+      }
+    };
+
+    loadShelters();
+
+    const handleMoveEnd = () => {
+      loadShelters();
+    };
+
+    map.on("moveend", handleMoveEnd);
+
+    return () => {
+      isMounted = false;
+      map.off("moveend", handleMoveEnd);
+      if (shelterAbortRef.current) {
+        shelterAbortRef.current.abort();
+      }
+    };
+  }, [map]);
+
+  useEffect(() => {
     if (!map || !alertLayerRef.current) return;
 
     alertLayerRef.current.clearLayers();
@@ -126,6 +183,31 @@ const MapView = () => {
       }
     });
   }, [alerts, map]);
+
+  useEffect(() => {
+    if (!map || !shelterLayerRef.current) return;
+
+    shelterLayerRef.current.clearLayers();
+
+    shelters.forEach((location) => {
+      if (location.latitude && location.longitude) {
+        const popupLines = [
+          `<strong>${location.name}</strong>`,
+        ];
+
+        if (location.address) {
+          popupLines.push(location.address);
+        }
+
+        shelterLayerRef.current
+          .addLayer(
+            L.marker([location.latitude, location.longitude], { icon: houseIcon }).bindPopup(
+              popupLines.join("<br />")
+            )
+          );
+      }
+    });
+  }, [shelters, map]);
 
   return (
     <div>
